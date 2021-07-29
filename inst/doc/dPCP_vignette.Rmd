@@ -78,7 +78,7 @@ dPCP identifies the empty partitions and single-target clusters in the reference
 
 After the identification of empty partitions and single-target clusters, their centroid position is identified by computing the arithmetic mean of the coordinates of their data elements. The distance between a cluster centroid and the centroid of empty partitions can be represented by a Euclidean vector. As the coordinates of the centroids of multi-target clusters are predicted to be the sum of the coordinates of the centroids of single-target clusters, the position of the centroid of multi-target clusters can be calculated by computing the vector sum of vectors representing the distance of the centroid the single-target clusters to the centroids of empty partitions. 
 
-The clustering analysis of sample data is carried out by the c-means algorithm (Bezdek, 1981; Lai Chung and Lee, 1994; Pal et al., 1996). The principle of fuzzy c-means algorithm is to minimize the variance within the cluster. The intra-cluster variance is defined as the sum of the squared distance of all cluster elements from the cluster centroid. The fluorescence values of sample elements and the coordinates of all centroids are used as input parameter for the analysis. The output of the c-means analysis is a matrix showing the probability of membership of the data elements to each cluster. Each data element is assigned to the cluster whose probability is the highest.
+The clustering analysis of sample data is carried out by the unsupervised competitive learning version of the c-means algorithm (Bezdek, 1981; Lai Chung and Lee, 1994; Pal et al., 1996). The principle of fuzzy c-means algorithm is to minimize the variance within the cluster. The intra-cluster variance is defined as the sum of the squared distance of all cluster elements from the cluster centroid. The fluorescence values of sample elements and the coordinates of all centroids are used as input parameter for the analysis. The output of the c-means analysis is a matrix showing the probability of membership of the data elements to each cluster. Each data element is assigned to the cluster whose probability is the highest.
 If the highest probability is lower than 0.5 a data element is classified as rain and its membership is recalculated with Mahalanobis distance (Mahalanobis, 1936). Mahalanobis distance computes the distance between a point and a distribution, it is based on measuring at multidimensional level how many standard deviations away is a point from the mean of a distribution. 
 The rain-tagged elements are assigned to the cluster with the lowest Mahalanobis distance. 
 
@@ -142,7 +142,7 @@ quant <- target_quant(rainclus, sample.table)
 rep.quant <- replicates_quant(quant, sample.table) 
 ```
 
-dPCP is available also as web app accessible through a web browser at (link).
+dPCP is available also as web app accessible through a web browser at https://dpcp.lns.lu/.
 
 
 ## Quality control

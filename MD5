@@ -1,4 +1,4 @@
-a12298e44ddbbe45513483a550939f36 *DESCRIPTION
+95f689a71cfbbcecd0b29f38f794faf9 *DESCRIPTION
 718bcae238e4bb747010ccea08e27c14 *LICENSE
 8647a348778b8514b9ded69cae738a33 *NAMESPACE
 62316a7781b4cbe17d01d4cc746f6b93 *R/1.input_data.R
@@ -6,11 +6,11 @@ a12298e44ddbbe45513483a550939f36 *DESCRIPTION
 a81bfefbdf02603f70ee7ac7c1ccfdac *R/3.clustering_part2.R
 4f1e46cfe944d42a5ddad4faf5558512 *R/4.quantification_and_export.R
 e501a1ddecf73074f365aca063bacb19 *R/dPCPclustering.R
-47826a3af78eedca7ff08f90053e9aba *build/vignette.rds
+bf67d0569c8a3044e81defcc87e4005c *build/vignette.rds
 dddd5a04321ae05485de3884721c2a5a *inst/CITATION
 bdd2d1bdd8f1cf0666a175483dc6c713 *inst/doc/dPCP_vignette.R
-b46d096f48ed11d59d73bde7c645314b *inst/doc/dPCP_vignette.Rmd
-ccfa487275ef0581ea6ab7d05fd6f32a *inst/doc/dPCP_vignette.html
+bd9b9e24c292602290458f4cd3027696 *inst/doc/dPCP_vignette.Rmd
+14c2845c70bc1dea748d8167a7758f59 *inst/doc/dPCP_vignette.html
 bee9894d30535e917c9c397f03499be6 *inst/extdata/Template_sampleTable.csv
 bb9688d287abf9ddab3baa3a0a01f9bd *inst/extdata/dilution20200313_A01_Amplitude.csv
 9f4da010e06ae16000a62720354f823d *inst/extdata/dilution20200313_A04_Amplitude.csv
@@ -41,4 +41,4 @@ b8f9ac74bb7a3c2eab40ac985a124ad5 *tests/testthat.R
 112c4d6a33938001f610fda590338914 *tests/testthat/test-summary_table.R
 0e89cd7668c983baabd770c2480b80d5 *vignettes/Figure1.png
 7a64428ca4726f2b895e9f45d5aa83ce *vignettes/Figure2.png
-b46d096f48ed11d59d73bde7c645314b *vignettes/dPCP_vignette.Rmd
+bd9b9e24c292602290458f4cd3027696 *vignettes/dPCP_vignette.Rmd
