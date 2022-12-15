@@ -1,6 +1,6 @@
 Package: dPCP
 Title: Automated Analysis of Multiplex Digital PCR Data
-Version: 1.0.4
+Version: 2.0.0
 Authors@R: c(person(given = "Alfonso", family = "De Falco",
                     role = c("aut", "cre"), 
                     email = "alfonsodefalco90@gmail.com",
@@ -20,13 +20,15 @@ Description: The automated clustering and quantification of the digital PCR
 License: MIT + file LICENSE
 Encoding: UTF-8
 Depends: R (>= 4.0.0)
-Imports: dbscan, e1071, exactci, ggplot2, ggpubr, graphics, raster,
-        rlist, scales, shiny, shinyjs, stats, stringr, utils
-RoxygenNote: 7.1.1
+Imports: cluster, dbscan, e1071, exactci, ggplot2, ggpubr, graphics,
+        raster, rlist, scales, shiny, shinyjs, stats, stringr, utils
+RoxygenNote: 7.2.1
 Suggests: knitr, rmarkdown, testthat
 VignetteBuilder: knitr
+URL: https://github.com/alfodefalco/dPCP
+BugReports: https://github.com/alfodefalco/dPCP/issues
 NeedsCompilation: no
-Packaged: 2021-07-28 13:34:36 UTC; adefalco
+Packaged: 2022-12-15 19:42:14 UTC; alfonsodefalco
 Author: Alfonso De Falco [aut, cre] (<https://orcid.org/0000-0001-9985-9920>),
   Michel Mittelbronn [ctb],
   Christophe Olinger [ctb],
@@ -34,4 +36,4 @@ Author: Alfonso De Falco [aut, cre] (<https://orcid.org/0000-0001-9985-9920>),
   Laboratoire national de santé [cph]
 Maintainer: Alfonso De Falco <alfonsodefalco90@gmail.com>
 Repository: CRAN
-Date/Publication: 2021-07-29 08:30:09 UTC
+Date/Publication: 2022-12-15 20:10:02 UTC

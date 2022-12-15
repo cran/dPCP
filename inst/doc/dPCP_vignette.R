@@ -5,6 +5,10 @@ knitr::opts_chunk$set(
 )
 
 ## ---- results = "hide", eval = FALSE------------------------------------------
+#  #Some examples of input files are included in the package
+#  system.file("extdata", package = "dPCP")
+
+## ---- results = "hide", eval = FALSE------------------------------------------
 #  #Show the content of sample table template
 #  read.csv(system.file("extdata", "Template_sampleTable.csv", package = "dPCP"),
 #            stringsAsFactors = FALSE, na.strings = c("NA", ""))

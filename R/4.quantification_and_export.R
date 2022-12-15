@@ -55,7 +55,7 @@ target_quant <- function(data.cluster, sample.table) {
   if (all(class(data.cluster) != c("rain_reclus", "cmeans_clus")))
     stop("data.cluster must be an object of class rain_reclus or cmeans_clus")
 
-  if (class(sample.table) != "sample_table")
+  if (!inherits(sample.table,"sample_table"))
     stop("'sample.table' must be an object of class sample_table")
 
   targetQuant <- lapply(seq_along(data.cluster), function(x) {
@@ -128,10 +128,13 @@ target_quant <- function(data.cluster, sample.table) {
     #Calculate the results  assuming a Poisson distribution for the number of
     #copies in each partition.
 
-    if (is.character(data.cluster[[x]]$quality)) {
+    if (data.cluster[[x]]$quality == "Defined by Bio-Rad") {
       partition.volume <- 0.00085
-    } else {
+    } else if (is.numeric(data.cluster[[x]]$quality)) {
       partition.volume <- 0.000755
+    } else {
+      partition.volume <- as.numeric(
+        stringr::str_split(data.cluster[[x]]$quality, ": ")[[1]][2])
     }
 
     pos_rate <- results$N.pos / results$totalwells
@@ -272,16 +275,19 @@ target_quant <- function(data.cluster, sample.table) {
 
 replicates_quant <- function(raw.results, sample.table) {
 
-  if (class(raw.results) != c("target_quant"))
+  if (!inherits(raw.results, "target_quant"))
     stop("raw.results must be an object of class target_quant")
 
-  if (class(sample.table) != "sample_table")
+  if (!inherits(sample.table, "sample_table"))
     stop("'sample.table' must be an object of class sample_table")
 
-  if (is.character(raw.results[[1]]$quality)) {
+  if (raw.results[[1]]$quality == "Defined by Bio-Rad") {
     partition.volume <- 0.00085
-  } else {
+  } else if (is.numeric(raw.results[[1]]$quality)) {
     partition.volume <- 0.000755
+  } else {
+    partition.volume <- as.numeric(
+      stringr::str_split(raw.results[[1]]$quality, ": ")[[1]][2])
   }
 
   if (any(duplicated(sample.table$Sample.name))) {
@@ -434,7 +440,7 @@ replicates_quant <- function(raw.results, sample.table) {
 #' }
 #' @export
 
-report_dPCP <- function(data, filename, sample = "all") {
+report_dPCP <- function(data, filename, sample = "all", color.blind = FALSE) {
 
   if (all(class(data) != "dPCP"))
     stop("data must be an object of class dPCP")
@@ -450,6 +456,9 @@ report_dPCP <- function(data, filename, sample = "all") {
   if (is.numeric(sample) &
       (any(sample < 1) | any(sample > length(data$samples))))
     stop("Undefined sample number selected")
+
+  if (!is.logical(color.blind))
+    stop("color.blind must be logical")
 
   if (all(sample == "all")) {
     export <- seq_along(data$sample)
@@ -496,8 +505,16 @@ report_dPCP <- function(data, filename, sample = "all") {
 
     text.p <- ggpubr::ggparagraph(text = tx, color = "black", size = 12)
 
+    if (isFALSE(color.blind)) {
+      cluscolors <- scales::hue_pal()(nrow(data$sample[[x]]$centers))
+    } else {
+      cluscolors <- c(
+        "gray70", "#004949", "#ff6db6", "#009292", "#ffb6db", "#490092",
+        "#006ddb", "#b66dff", "#6db6ff", "#b6dbff", "#920000", "#924900",
+        "#db6d00", "#24ff24", "#ffff6d",
+        "#000000")[1:nrow(data$sample[[x]]$centers)]
+    }
 
-    cluscolors <- scales::hue_pal()(nrow(data$sample[[x]]$centers))
     names(cluscolors) <- row.names(data$sample[[x]]$centers)
 
     graph.p <- ggplot(as.data.frame(data$sample[[x]]$data),

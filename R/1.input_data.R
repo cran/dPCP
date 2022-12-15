@@ -33,6 +33,8 @@
 #' dbscan_combination("dilution20200313_B01_Amplitude.csv",
 #'                    file.location = fileLoc, system = "bio-rad",
 #'                    eps = c(150, 160, 180, 190), minPts = c(80, 100, 120))
+#'
+#' unlink("dilution20200313_B01_Amplitude.pdf")
 #' }
 #' @export
 
@@ -53,7 +55,11 @@ dbscan_combination <- function(refID, system = NULL, file.location = ".",
     system <- "Bio-Rad"
     reference.quality <- "Defined by Bio-Rad"
 
-  } else {stop("system must be either Thermo Fisher or Bio-Rad")}
+  } else if (any(c("Other", "other", "O", "o") == system)) {
+    system <- "Other"
+    reference.quality <- "Defined by the supplier"
+
+  } else {stop("system must be either Thermo Fisher, Bio-Rad, or other")}
 
   if ((system == "Thermo Fisher") & (
     !is.numeric(reference.quality) || any(reference.quality > 1) ||
@@ -216,7 +222,11 @@ read_sampleTable <- function(file, system = NULL, file.location = ".") {
                    "biorad", "Bio", "bio", "B", "b") == system)) {
     system <- "Bio-Rad"
 
-  } else {stop("system must be either Thermo Fisher or Bio-Rad")}
+  } else if (any(c("Other", "other", "O", "o") == system)) {
+    system <- "Other"
+    reference.quality <- "Defined by the supplier"
+
+  } else {stop("system must be either Thermo Fisher, Bio-Rad, or other")}
 
   if (!is.character(file.location))
     stop("'file.location' must be a path name indicating reference and
@@ -353,7 +363,7 @@ read_reference <- function(sample.table, system = NULL, file.location = ".",
                            reference.quality = 0.5, eps = NULL,
                            minPts = NULL) {
 
-  if (class(sample.table) != "sample_table")
+  if (!inherits(sample.table, "sample_table"))
     stop("'sample.table' must be an object of class sample_table")
 
 
@@ -366,7 +376,11 @@ read_reference <- function(sample.table, system = NULL, file.location = ".",
     system <- "Bio-Rad"
     reference.quality <- "Defined by Bio-Rad"
 
-  } else {stop("system must be either Thermo Fisher or Bio-Rad")}
+  } else if (any(c("Other", "other", "O", "o") == system)) {
+    system <- "Other"
+    reference.quality <- "Defined by the supplier"
+
+  } else {stop("system must be either Thermo Fisher, Bio-Rad, or other")}
 
 
   if ((system == "Thermo Fisher") & (
@@ -599,9 +613,9 @@ read_reference <- function(sample.table, system = NULL, file.location = ".",
 #' @export
 
 read_sample <- function(sample.table, system = NULL, file.location = ".",
-                        sample.quality = 0.5) {
+                        sample.quality = 0.5, partition.volume = NULL) {
 
-  if (class(sample.table) != "sample_table")
+  if (!inherits(sample.table, "sample_table"))
     stop("'sample.table' must be an object of class sample_table")
 
   if (!is.character(file.location))
@@ -617,7 +631,17 @@ read_sample <- function(sample.table, system = NULL, file.location = ".",
     system <- "Bio-Rad"
     sample.quality <- "Defined by Bio-Rad"
 
-  } else {stop("system must be either Thermo Fisher or Bio-Rad")}
+  } else if (any(c("Other", "other", "O", "o") == system)) {
+
+    if (is.numeric(partition.volume) & length(partition.volume) == 1) {
+      system <- "Other"
+      sample.quality <- paste0(
+        "Defined by the supplier. Partition volume: ", partition.volume)
+    } else {
+      stop("partition.volume must be numeric")
+    }
+
+  } else {stop("system must be either Thermo Fisher, Bio-Rad, or other")}
 
 
   if ((system == "Thermo Fisher") & (
