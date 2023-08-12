@@ -394,8 +394,8 @@ ID.</li>
 <li>A <em>sample table</em>. The sample table is a csv file containing
 the information about the samples and the experiment settings.</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Some examples of input files are included in the package</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="at">package =</span> <span class="st">&quot;dPCP&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">#Some examples of input files are included in the package</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="at">package =</span> <span class="st">&quot;dPCP&quot;</span>)</span></code></pre></div>
 <p>The sample table has nine columns:</p>
 <ol style="list-style-type: decimal">
 <li><em>Sample name</em>. The name to be assigned to a sample. The
@@ -445,12 +445,12 @@ has to be indicated as 0.2).</li>
 information. The table format is fundamental for the analysis and must
 not be changed. A file named <em>Template_sampleTable.csv</em> is saved
 as an example file of this package and can be used as template:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Show the content of sample table template</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;Template_sampleTable.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;dPCP&quot;</span>),</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>, <span class="at">na.strings =</span> <span class="fu">c</span>(<span class="st">&quot;NA&quot;</span>, <span class="st">&quot;&quot;</span>))</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Copy the template to working directory</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">file.copy</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;Template_sampleTable.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;dPCP&quot;</span>), <span class="fu">getwd</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co">#Show the content of sample table template</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;Template_sampleTable.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;dPCP&quot;</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>          <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>, <span class="at">na.strings =</span> <span class="fu">c</span>(<span class="st">&quot;NA&quot;</span>, <span class="st">&quot;&quot;</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#Copy the template to working directory</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">file.copy</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;Template_sampleTable.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;dPCP&quot;</span>), <span class="fu">getwd</span>())</span></code></pre></div>
 <p>The first step carried out by dPCP is the collection of data and
 information from the input files. When a reference is used, it is
 fundamental to have high-quality data as dPCP starts the identification
@@ -511,55 +511,55 @@ calculated as previously described (Majumdar et al., 2015). Replicates
 can be combined and the copies per partition are re-calculated.</p>
 <p>A complete analysis can be executed by the function
 <em>dPCP()</em>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dPCP)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Find path of sample table and location of reference and input files</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sampleTable <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;Template_sampleTable.csv&quot;</span>, </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">package =</span> <span class="st">&quot;dPCP&quot;</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>fileLoc <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>,<span class="at">package =</span> <span class="st">&quot;dPCP&quot;</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Lunch dPCP analysis</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">dPCP</span>(sampleTable, <span class="at">system =</span> <span class="st">&quot;bio-rad&quot;</span>, <span class="at">file.location =</span> fileLoc,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                 , <span class="at">eps =</span> <span class="dv">200</span>, <span class="at">minPts =</span> <span class="dv">50</span>, <span class="at">save.template =</span> <span class="cn">FALSE</span>, <span class="at">rain =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(dPCP)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#Find path of sample table and location of reference and input files</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>sampleTable <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;Template_sampleTable.csv&quot;</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>                           <span class="at">package =</span> <span class="st">&quot;dPCP&quot;</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>fileLoc <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>,<span class="at">package =</span> <span class="st">&quot;dPCP&quot;</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#Lunch dPCP analysis</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">dPCP</span>(sampleTable, <span class="at">system =</span> <span class="st">&quot;bio-rad&quot;</span>, <span class="at">file.location =</span> fileLoc,</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>                 , <span class="at">eps =</span> <span class="dv">200</span>, <span class="at">minPts =</span> <span class="dv">50</span>, <span class="at">save.template =</span> <span class="cn">FALSE</span>, <span class="at">rain =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Alternatively, a step by step analysis can be carried out following
 the abovementioned pipeline:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dPCP)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Find path of sample table and location of reference and input files</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sampleTable <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;Template_sampleTable.csv&quot;</span>, </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">package =</span> <span class="st">&quot;dPCP&quot;</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>fileLoc <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>,<span class="at">package =</span> <span class="st">&quot;dPCP&quot;</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Read sample table file</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>sample.table <span class="ot">&lt;-</span> <span class="fu">read_sampleTable</span>(sampleTable, <span class="at">system =</span> <span class="st">&quot;bio-rad&quot;</span>, </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">file.location =</span> fileLoc)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Read reference files</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">read_reference</span>(sample.table, <span class="at">system =</span> <span class="st">&quot;bio-rad&quot;</span>, </span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                      <span class="at">file.location =</span> fileLoc)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Read samples files</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">&lt;-</span> <span class="fu">read_sample</span>(sample.table, <span class="at">system =</span> <span class="st">&quot;bio-rad&quot;</span>, <span class="at">file.location =</span> fileLoc)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#Reference DBSCAN clustering</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>dbref <span class="ot">&lt;-</span> <span class="fu">reference_dbscan</span>(ref, sample.table, <span class="at">save.template =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#Predict position of clusters centroid from reference DBSCAN results</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>cent <span class="ot">&lt;-</span> <span class="fu">centers_data</span>(samp, sample.table,dbref)</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">#Fuzzy c-means clustering</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>cmclus <span class="ot">&lt;-</span> <span class="fu">cmeans_clus</span>(cent)</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">#Rain classification.</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>rainclus <span class="ot">&lt;-</span> <span class="fu">rain_reclus</span>(cmclus)</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co">#Quantification</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>quantcm <span class="ot">&lt;-</span> <span class="fu">target_quant</span>(cmclus, sample.table)</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>quant <span class="ot">&lt;-</span> <span class="fu">target_quant</span>(rainclus, sample.table)</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co">#Replicates pooling</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>rep.quant <span class="ot">&lt;-</span> <span class="fu">replicates_quant</span>(quant, sample.table) </span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">library</span>(dPCP)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">#Find path of sample table and location of reference and input files</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>sampleTable <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;Template_sampleTable.csv&quot;</span>, </span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>                           <span class="at">package =</span> <span class="st">&quot;dPCP&quot;</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>fileLoc <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>,<span class="at">package =</span> <span class="st">&quot;dPCP&quot;</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#Read sample table file</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>sample.table <span class="ot">&lt;-</span> <span class="fu">read_sampleTable</span>(sampleTable, <span class="at">system =</span> <span class="st">&quot;bio-rad&quot;</span>, </span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>                                 <span class="at">file.location =</span> fileLoc)</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#Read reference files</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">read_reference</span>(sample.table, <span class="at">system =</span> <span class="st">&quot;bio-rad&quot;</span>, </span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>                      <span class="at">file.location =</span> fileLoc)</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#Read samples files</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>samp <span class="ot">&lt;-</span> <span class="fu">read_sample</span>(sample.table, <span class="at">system =</span> <span class="st">&quot;bio-rad&quot;</span>, <span class="at">file.location =</span> fileLoc)</span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co">#Reference DBSCAN clustering</span></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a>dbref <span class="ot">&lt;-</span> <span class="fu">reference_dbscan</span>(ref, sample.table, <span class="at">save.template =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co">#Predict position of clusters centroid from reference DBSCAN results</span></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a>cent <span class="ot">&lt;-</span> <span class="fu">centers_data</span>(samp, sample.table,dbref)</span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="co">#Fuzzy c-means clustering</span></span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a>cmclus <span class="ot">&lt;-</span> <span class="fu">cmeans_clus</span>(cent)</span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co">#Rain classification.</span></span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a>rainclus <span class="ot">&lt;-</span> <span class="fu">rain_reclus</span>(cmclus)</span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co">#Quantification</span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a>quantcm <span class="ot">&lt;-</span> <span class="fu">target_quant</span>(cmclus, sample.table)</span>
+<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a>quant <span class="ot">&lt;-</span> <span class="fu">target_quant</span>(rainclus, sample.table)</span>
+<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a><span class="co">#Replicates pooling</span></span>
+<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a>rep.quant <span class="ot">&lt;-</span> <span class="fu">replicates_quant</span>(quant, sample.table) </span></code></pre></div>
 <p>dPCP is available also as web app accessible through a web browser at
 dpcp.lns.lu</p>
 </div>

@@ -1,6 +1,6 @@
 Package: dPCP
 Title: Automated Analysis of Multiplex Digital PCR Data
-Version: 2.0.0
+Version: 2.0.1
 Authors@R: c(person(given = "Alfonso", family = "De Falco",
                     role = c("aut", "cre"), 
                     email = "alfonsodefalco90@gmail.com",
@@ -28,7 +28,7 @@ VignetteBuilder: knitr
 URL: https://github.com/alfodefalco/dPCP
 BugReports: https://github.com/alfodefalco/dPCP/issues
 NeedsCompilation: no
-Packaged: 2022-12-15 19:42:14 UTC; alfonsodefalco
+Packaged: 2023-08-12 17:53:04 UTC; alfonsodefalco
 Author: Alfonso De Falco [aut, cre] (<https://orcid.org/0000-0001-9985-9920>),
   Michel Mittelbronn [ctb],
   Christophe Olinger [ctb],
@@ -36,4 +36,4 @@ Author: Alfonso De Falco [aut, cre] (<https://orcid.org/0000-0001-9985-9920>),
   Laboratoire national de santé [cph]
 Maintainer: Alfonso De Falco <alfonsodefalco90@gmail.com>
 Repository: CRAN
-Date/Publication: 2022-12-15 20:10:02 UTC
+Date/Publication: 2023-08-12 18:20:02 UTC

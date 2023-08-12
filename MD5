@@ -1,4 +1,4 @@
-a2f9cca1486443e11b4041e0bfea1469 *DESCRIPTION
+a5ff25bdeb4749fdf6ac7a21953b7e82 *DESCRIPTION
 718bcae238e4bb747010ccea08e27c14 *LICENSE
 8647a348778b8514b9ded69cae738a33 *NAMESPACE
 cc03d44fdb31880b473454cc77758d51 *R/1.input_data.R
@@ -6,11 +6,11 @@ cc03d44fdb31880b473454cc77758d51 *R/1.input_data.R
 9b831acf459a9b44877c0c4cfafe088e *R/3.clustering_part2.R
 969b7a2687f057f9db85e08e656b7bc2 *R/4.quantification_and_export.R
 2c558703baedc78e9f1b61a1b79af84d *R/dPCPclustering.R
-79177fa0a0ef8e408dc5ed45441be3ed *build/vignette.rds
-dddd5a04321ae05485de3884721c2a5a *inst/CITATION
+17415839c6c6f0cf0a02d11ce74171e8 *build/vignette.rds
+956eb8aa4b8001dc9508a0c0c98b1bcb *inst/CITATION
 12072d616ff5e60548014d5af054d699 *inst/doc/dPCP_vignette.R
 53c4a05a53d3a74bfdfdac7253d7a306 *inst/doc/dPCP_vignette.Rmd
-615677605ed234978936c46e460167f7 *inst/doc/dPCP_vignette.html
+d56fdd8ba2918ccb0b8a2fd29e808e7d *inst/doc/dPCP_vignette.html
 bee9894d30535e917c9c397f03499be6 *inst/extdata/Template_sampleTable.csv
 bb9688d287abf9ddab3baa3a0a01f9bd *inst/extdata/dilution20200313_A01_Amplitude.csv
 9f4da010e06ae16000a62720354f823d *inst/extdata/dilution20200313_A04_Amplitude.csv

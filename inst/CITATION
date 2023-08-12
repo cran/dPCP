@@ -1,17 +1,21 @@
 citHeader("To cite dPCP use:")
 
-citEntry(entry = "Manual",
-title = "Digital PCR Cluster Predictor: a flexible and sensitive algorithm for
-the automated analysis of multiplex digital PCR data",
-author = personList(as.person("Alfonso De Falco"),
-as.person("Daniel Stieber"),
-as.person("Michel Mittelbronn")),
-year = "2020",
-url = "https://CRAN.R-project.org/package=dPCP",
-textVersion =
-paste("Alfonso De Falco, Daniel Stieber, Michel Mittelbronn (2020).",
-"Digital PCR Cluster Predictor: a flexible and sensitive algorithm for
-the automated analysis of multiplex digital PCR data.",
-"R package version 0.9.0.",
-"https://CRAN.R-project.org/package=dPCP")
+bibentry(bibtype = "Article",
+  title        = "Digital PCR cluster predictor: a universal R-package and shiny app for the automated analysis of multiplex digital PCR data",
+  author       = c(person(given = "Alfonso",
+                          family = "De Falco"),
+                   person(given = "Christophe M",
+                          family = "Olinger"),
+                   person(given = "Barbara",
+                          family = "Klink"),
+                   person(given = "C Michel",
+                          family = "Mittelbronn"),
+                   person(given = "Daniel",
+                          family = "Stieber")),
+  journal      = "Bioinformatics",
+  year         = "2023",
+  volume       = "39",
+  number       = "5",
+  doi          = "10.1093/bioinformatics/btad282"
 )
+
